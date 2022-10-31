@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  appnats:
+    image: "nats"
+    ports:
+      - "4222:4222"
+  app:
+    build: 
+      context: .
+      dockerfile: PruebaWorker/Dockerfile
+    depends_on:
+      - appnats
+  app2:
+    build:
+      context: .
+      dockerfile: Worker2/Dockerfile
+    depends_on:
+      - appnats
